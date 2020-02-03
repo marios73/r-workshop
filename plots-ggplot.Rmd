@@ -5,3 +5,24 @@ date: "03/02/2020"
 output: html_document
 ---
 We are going to make plots in R and it's going to be amazing.
+```{r}
+library(tidyverse)
+library(readxl)
+library(here)
+
+ca_np <- read.csv(here("data", "ca_np.csv"))
+ci_np <- read_excel(here("data", "ci_np.xlsx"))
+
+gg_base <- ggplot(data = ci_np, aes(x = year, y = visitors))
+
+gg_base + geom_line(color = "purple", linetype = "dashed")
+gg_base + geom_point(color = "purple", pch = 17, size = 4, alpha = 0.5)
+gg_base + geom_point(color = "blue", pch = 15, size = 3, alpha = 0.5)
+gg_base + geom_point(aes(size = visitors, color = visitors), alpha = 0.5)
+gg_base + geom_col(aes(fill = visitors))
+gg_base + geom_point(aes(size = visitors, color = visitors), alpha = 0.5) + theme_minimal()
+gg_base + geom_line(linetype = "dotted") + theme_bw() + labs(x = "Year", y = "Annual Park Visitors", title = "Channel Islands NP Visitation", subtitle = "(1962-2016)")
+## 5.9
+```
+
+
